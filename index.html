@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+
+<html lang="ru">
+  <head>
+    <title>Store</title>
+  </head>
+
+  <body>
+
+    <form>
+      <label for="product">Продукт:</label>
+      <select id="product" name="product" required>
+          <option value="">Выберите продукт</option>
+          <option value="126000">Iphone 16</option>
+          <option value="117000">Samsung s24</option>
+          <option value="80000">Xiaomi 13</option>
+          <option value="110000">Asus ROG Phone 8</option>
+      </select><br />
+
+      <label for="quantity">Количество:</label>
+      <input id="quantity" name="quantity"
+        min="1" value="1" required type="number" /><br />
+
+      <button id="btn" type="submit">Вычислить</button>
+    </form>
+ 
+    <div id="result"></div>
+    <script src="calc.js"> </script>
+  </body>
+</html>
