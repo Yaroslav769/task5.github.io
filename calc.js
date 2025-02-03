@@ -1,30 +1,33 @@
-function isValidNumber(str) {
-    return /^[1-9][0-9]*$/.test(str);
-}
-
-function calculateTotal(event) {
-    event.preventDefault();
-
+document.addEventListener("DOMContentLoaded", function() {
+    const form = document.querySelector("form");
+    const productSelect = document.getElementById("product");
+    const quantityInput = document.getElementById("quantity");
     const resultElement = document.getElementById("result");
 
-    const priceValue = document.getElementById("product").value;
-    const quantityValue = document.getElementById("quantity").value;
+    form.addEventListener("submit", function(event) {
+        event.preventDefault();
+        calculateTotal();
+    });
 
-    let message;
-
-    if (!priceValue) {
-        message = "Пожалуйста, выберите продукт!";
-    } else if (!isValidNumber(quantityValue)) {
-        message = "Введите корректное количество (натуральное число)!";
-    } else {
-        const total = parseInt(priceValue) * parseInt(quantityValue);
-        message = `Общая стоимость: ${total}`;
+    function isValidNumber(value) {
+        return /^[1-9]\d*$/.test(value);
     }
 
-    resultElement.textContent = message;
-}
+    function calculateTotal() {
+        const price = productSelect.value;
+        const quantity = quantityInput.value;
 
-window.addEventListener("DOMContentLoaded", () => {
-    const button = document.getElementById("btn");
-    button.addEventListener("click", calculateTotal);
+        if (!price) {
+            resultElement.textContent = "Пожалуйста, выберите продукт!";
+            return;
+        }
+
+        if (!isValidNumber(quantity)) {
+            resultElement.textContent = "Введите корректное количество!";
+            return;
+        }
+
+        const total = parseInt(price, 10) * parseInt(quantity, 10);
+        resultElement.textContent = `Общая стоимость: ${total}`;
+    }
 });
